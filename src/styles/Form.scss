@@ -1,0 +1,133 @@
+@use "sass:map";
+// Color Pallete
+$theme-colors: (
+  "bg-color": #e4e4e4,
+  "input-bg": #fcfcfc,
+  "input-border": 1px solid #3a5985,
+  "input-error": 3px solid red,
+  "input-border-focus": 3px solid #3a5985,
+  "input-text": #3a5985,
+  "text-error": red,
+  "input-label": #89afe0,
+  "title-color": #3a5985,
+  "btn-color": #3a5985,
+  "btn-text": #e4e4e4,
+);
+
+$theme-font-size: (
+  "title": 20px,
+  "text-small": 10px,
+  "text-medium": 12px,
+  "text-large": 14px,
+);
+
+// Layout Styles
+$container-display: flex;
+$container-justify: center;
+$container-align: center;
+$form-height: 90vh;
+$form-width: 30vw;
+$border-radius-sharp: 10px;
+$border-radius-soft: 5px;
+$box-shadow-light: 6px 6px 20px rgba(255, 255, 255, 0.3);
+$field-container-height: 6vh;
+$field-container-width: 80vw;
+$field-container-margin: 10px;
+$field-height: 5vh;
+$field-width: 40vh;
+
+@mixin container($height, $width, $display, $justify, $align) {
+  height: $height;
+  width: $width;
+  display: $display;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+.user-form {
+  @include container(
+    $form-height,
+    $form-width,
+    $container-display,
+    $container-justify,
+    $container-align
+  );
+  flex-direction: column;
+  background-color: map-get($theme-colors, "bg-color");
+  border-radius: $border-radius-sharp;
+  box-shadow: $box-shadow-light;
+}
+
+.field-container {
+  @include container(
+    $field-container-height,
+    $field-container-width,
+    $container-display,
+    $container-justify,
+    $container-align
+  );
+  margin: $field-container-margin;
+  flex-direction: column;
+}
+
+p {
+  font-size: map-get($theme-font-size, "text-medium");
+  text-align: left;
+  width: 40vh;
+  height: 1vh;
+  padding: 0;
+  margin-block-start: 0px;
+  color: map-get($theme-colors, "text-error");
+}
+
+input {
+  height: $field-height;
+  width: $field-width;
+  border: map-get($theme-colors, "input-border");
+  background-color: map-get($theme-colors, "input-bg");
+  border-radius: $border-radius-soft;
+  padding-left: 5px;
+  color: map-get($theme-colors, "input-text");
+  font-weight: 600;
+}
+
+input[type="text"]:focus {
+  border: map-get($theme-colors, "input-border-focus");
+  color: map-get($theme-colors, "input-text");
+  outline: none;
+}
+
+input[type="password"]:focus {
+  border: map-get($theme-colors, "input-border-focus");
+  color: map-get($theme-colors, "input-text");
+  outline: none;
+}
+
+input::placeholder {
+  color: map-get($theme-colors, "input-text");
+  font-size: map-get($theme-font-size, "text-medium");
+  opacity: 0.6;
+}
+
+input[type="submit"] {
+  width: 10vw;
+  color: map-get($theme-colors, "btn-text");
+  background-color: map-get($theme-colors, "btn-color");
+}
+
+h1 {
+  color: map-get($theme-colors, "title-color");
+  font-size: map-get($theme-font-size, "title");
+}
+
+p {
+  border: none !important;
+}
+
+.error {
+  border: map-get($theme-colors, "input-error");
+}
+
+.error-none {
+  display: none;
+}
